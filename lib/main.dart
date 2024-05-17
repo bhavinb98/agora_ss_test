@@ -47,6 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int screenSharerUid = 1001;
 
   // Agora 24-hour Temp IDs
+  // TODO: Add IDs
   String agoraAppId = ""; // Your App ID here
   String agoraToken = ""; // Your temp token here
   String channelId = "test";
