@@ -47,10 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int screenSharerUid = 1001;
 
   // Agora 24-hour Temp IDs
-  String agoraAppId = "24cd3e1afe574eec87809aade1d5acc9";
-  String agoraToken =
-      "007eJxTYJh9ZF7X5Hu9f6OLBBYuTVHVW9T/j+XqBJ/G77N/z6ucXLdSgcHIJDnFONUwMS3V1NwkNTXZwtzCwDIxMSXVMMU0MTnZsrvZPa0hkJHBI6CVhZEBAkF8FoaS1OISBgYANeEiXA==";
-
+  String agoraAppId = ""; // Your App ID here
+  String agoraToken = ""; // Your temp token here
   String channelId = "test";
 
   late final RtcEngineEx _engine;
