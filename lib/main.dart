@@ -49,10 +49,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // Agora 24-hour Temp IDs
   // TODO: Add IDs
-  String agoraAppId = "24cd3e1afe574eec87809aade1d5acc9"; // Your App ID here
-  String agoraToken =
-      "007eJxTYOA5sobHl+fatU+FmjrMGYEpJSqG3DNvB33imFJ0vHwCj7ECg5FJcopxqmFiWqqpuUlqarKFuYWBZWJiSqphimlicrLlqRyftIZARgatpEmMjAwQCOKzMJSkFpcwMAAAmZMddA=="; // Your temp token here
-  String channelId = "test";
+  String agoraAppId = ""; // Your App ID here
+  String agoraToken = ""; // Your temp token here
+  String channelId = ""; // Your channel name here
 
   late final RtcEngineEx _engine;
   late final RtcEngineEventHandler _rtcEngineEventHandler;
