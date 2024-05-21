@@ -42,14 +42,16 @@ class _MyHomePageState extends State<MyHomePage> {
   bool isReadyPreview = false;
   bool isJoined = false;
   bool isScreenShared = false;
+  bool loading = true;
 
   int localUid = 1000;
   int screenSharerUid = 1001;
 
   // Agora 24-hour Temp IDs
   // TODO: Add IDs
-  String agoraAppId = ""; // Your App ID here
-  String agoraToken = ""; // Your temp token here
+  String agoraAppId = "24cd3e1afe574eec87809aade1d5acc9"; // Your App ID here
+  String agoraToken =
+      "007eJxTYOA5sobHl+fatU+FmjrMGYEpJSqG3DNvB33imFJ0vHwCj7ECg5FJcopxqmFiWqqpuUlqarKFuYWBZWJiSqphimlicrLlqRyftIZARgatpEmMjAwQCOKzMJSkFpcwMAAAmZMddA=="; // Your temp token here
   String channelId = "test";
 
   late final RtcEngineEx _engine;
@@ -59,11 +61,14 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     _requestPermissionIfNeed();
-    _initEngine();
   }
 
   Future<void> _requestPermissionIfNeed() async {
     await [Permission.microphone, Permission.camera].request();
+    setState(() {
+      loading = false;
+    });
+    _initEngine();
   }
 
   @override
@@ -73,59 +78,64 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: AgoraVideoView(
-                  controller: VideoViewController(
-                    rtcEngine: _engine,
-                    canvas: const VideoCanvas(
-                      uid: 0,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: isScreenShared
-                    ? Stack(children: [
-                        AgoraVideoView(
-                          controller: VideoViewController(
-                            rtcEngine: _engine,
-                            canvas: const VideoCanvas(
-                              uid: 0,
-                              sourceType: VideoSourceType.videoSourceScreen,
-                            ),
+      body: loading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    flex: 1,
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: AgoraVideoView(
+                        controller: VideoViewController(
+                          rtcEngine: _engine,
+                          canvas: const VideoCanvas(
+                            uid: 0,
                           ),
-                        ),
-                        const Positioned(
-                          top: 5,
-                          right: 5,
-                          child: Text(
-                            "Screen Share",
-                            style: TextStyle(color: Colors.red),
-                          ),
-                        ),
-                      ])
-                    : Container(
-                        color: Colors.grey[200],
-                        child: const Center(
-                          child: Text('Screen Sharing View'),
                         ),
                       ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: isScreenShared
+                          ? Stack(children: [
+                              AgoraVideoView(
+                                controller: VideoViewController(
+                                  rtcEngine: _engine,
+                                  canvas: const VideoCanvas(
+                                    uid: 0,
+                                    sourceType:
+                                        VideoSourceType.videoSourceScreen,
+                                  ),
+                                ),
+                              ),
+                              const Positioned(
+                                top: 5,
+                                right: 5,
+                                child: Text(
+                                  "Screen Share",
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              ),
+                            ])
+                          : Container(
+                              color: Colors.grey[200],
+                              child: const Center(
+                                child: Text('Screen Sharing View'),
+                              ),
+                            ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
       persistentFooterButtons: [
         ElevatedButton(
           // Joining channel not really required

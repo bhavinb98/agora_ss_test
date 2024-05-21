@@ -28,7 +28,10 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  agora_rtc_engine: ^6.3.1
+  agora_rtc_engine:
+    git:
+      url: https://github.com/costaaaaaa/Agora-Flutter-SDK.git
+      ref: fix_foreground_media_service
   permission_handler: ^10.2.0
   path_provider: ^2.0.8
   flutter:
