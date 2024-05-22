@@ -4,12 +4,11 @@ packages:
   agora_rtc_engine:
     dependency: "direct main"
     description:
-      path: "."
-      ref: fix_foreground_media_service
-      resolved-ref: "595bf1b93df80bade829b99a597825f07a35876b"
-      url: "https://github.com/costaaaaaa/Agora-Flutter-SDK.git"
-    source: git
-    version: "6.3.1+1"
+      name: agora_rtc_engine
+      sha256: "4e620fe6db19ab15f35336b76e1fd61e88b627507e6da8efa2e42ed59ca23b8a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.3.1"
   async:
     dependency: transitive
     description:
